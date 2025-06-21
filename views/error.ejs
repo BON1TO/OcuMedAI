@@ -1,0 +1,10 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5 text-center">
+    <div class="alert alert-danger p-4 shadow-sm">
+        <h2 class="mb-3">⚠️ Oops! An Error Occurred</h2>
+        <h4>Error Code: <%= err.statusCode || 500 %></h4>
+        <p class="lead"><%= err.message || "Something went wrong on the server." %></p>
+    </div>
+    <a href="/home" class="btn btn-dark mt-3">← Go Back to Dashboard</a>
+</div>

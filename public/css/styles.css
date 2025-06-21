@@ -1,0 +1,15 @@
+.flash-container {
+  position: fixed;
+  top: 80px; /* Adjust if you have a sticky navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050; /* Bootstrap navbar is ~1030 */
+  width: 80%;
+  max-width: 600px;
+  pointer-events: none;
+}
+.flash-msg {
+  pointer-events: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  opacity: 0.95;
+}

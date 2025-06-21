@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+.env
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Model Checkpoints
+ocumed-api/predictors/
+
+# Logs
+*.log
+
+**/.DS_Store

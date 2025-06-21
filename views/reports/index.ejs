@@ -1,0 +1,17 @@
+<% layout("layouts/boilerplate") %>
+
+<h2 class="text-center mt-4">Your Reports</h2>
+
+<div class="mt-4">
+  <% if (reports.length === 0) { %>
+    <p class="text-center">No reports found. Submit a new report <a href="/reports/new">here</a>.</p>
+  <% } else { %>
+    <div class="list-group">
+      <% reports.forEach(report => { %>
+        <a href="/reports/<%= report._id %>" class="list-group-item list-group-item-action">
+          <strong><%= report.createdAt.toDateString() %></strong> – DR: <%= report.dr_level %>, HTN: <%= report.htn_risk %>%
+        </a>
+      <% }) %>
+    </div>
+  <% } %>
+</div>

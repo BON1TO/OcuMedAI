@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<h1 class="title text-center mt-4">Register on OcuMedAI</h1>
+
+<div class="mt-3 row">
+  <div class="col-6 offset-3">
+    <form action="/register" class="user-form needs-validation" method="POST" novalidate>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+        <div class="invalid-feedback">Valid email is required.</div>
+      </div>
+      <!-- Full Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" name="name" id="name" class="form-control" required>
+        <div class="invalid-feedback">Full name is required.</div>
+      </div>
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" id="username" class="form-control" required>
+        <div class="invalid-feedback">Username is required.</div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" id="password" class="form-control" required minlength="6">
+        <div class="invalid-feedback">Password must be at least 6 characters.</div>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <label for="password-c" class="form-label">Confirm Password</label>
+        <input type="password" name="password-c" id="password-c" class="form-control" required>
+        <div class="invalid-feedback">Please confirm your password.</div>
+      </div>
+
+      <button class="btn btn-dark w-100 mt-2">Register</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const form = document.querySelector('.user-form');
+  const password = document.getElementById('password');
+  const confirmPassword = document.getElementById('password-c');
+
+  form.addEventListener('submit', function (e) {
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    const existingAlert = document.querySelector('.password-error');
+    if (password.value !== confirmPassword.value) {
+      e.preventDefault();
+      confirmPassword.classList.add('is-invalid');
+      if (!existingAlert) {
+        const alert = document.createElement('div');
+        alert.className = 'alert alert-danger mt-2 password-error';
+        alert.innerText = 'Passwords do not match.';
+        confirmPassword.parentNode.appendChild(alert);
+      }
+    } else {
+      if (existingAlert) existingAlert.remove();
+    }
+
+    form.classList.add('was-validated');
+  });
+</script>

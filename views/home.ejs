@@ -1,0 +1,12 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="text-center my-5">
+  <h1>Welcome <%= currentUser ? currentUser.name : "to OcuMedAI" %> 👁️‍🗨️</h1>
+  <p class="lead">A Deep Learning-based Risk Assessment System</p>
+
+  <% if(currentUser) { %>
+    <a href="/reports/new" class="btn btn-primary btn-lg mt-4">Create New Report</a>
+  <% } else { %>
+    <a href="/login" class="btn btn-success mt-4">Login to Generate Reports</a>
+  <% } %>
+</div>

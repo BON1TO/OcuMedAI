@@ -1,0 +1,22 @@
+<% layout("layouts/boilerplate") %>
+
+<h2 class="text-center mt-4">Report Details</h2>
+
+<div class="col-md-8 offset-md-2 user-form mt-3">
+  <p><strong>Date:</strong> <%= report.createdAt.toDateString() %></p>
+  <p><strong>Age:</strong> <%= report.age %></p>
+  <p><strong>Sex:</strong> <%= report.sex %></p>
+  <p><strong>BMI:</strong> <%= report.bmi %></p>
+  <p><strong>Diabetic Retinopathy Stage:</strong> <%= report.dr_level %></p>
+  <p><strong>Hypertension Risk:</strong> <%= report.htn_risk %>%</p>
+  <p><strong>HbA1c Level:</strong> <%= report.hba1c %></p>
+  <p><strong>Atherosclerosis Risk:</strong> <%= report.atherosclerosis_risk %>%</p>
+
+  <div class="text-center mt-4">
+    <img src="<%= report.image_url %>" alt="FUNDUS Image" class="img-fluid border border-dark rounded">
+  </div>
+</div>
+
+<div class="text-center mt-4">
+  <a href="/reports" class="btn btn-dark">Back to Reports</a>
+</div>
