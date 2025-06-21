@@ -1,13 +1,38 @@
+body {
+  background-color: #f9fbfd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3 {
+  color: #2c3e50;
+}
+
+.btn-primary {
+  background-color: #0077b6;
+  border-color: #0077b6;
+}
+
+.btn-outline-success {
+  border-color: #38b000;
+  color: #38b000;
+}
+
+.btn-outline-success:hover {
+  background-color: #38b000;
+  color: #fff;
+}
+
 .flash-container {
   position: fixed;
-  top: 80px; /* Adjust if you have a sticky navbar */
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1050; /* Bootstrap navbar is ~1030 */
+  z-index: 1050;
   width: 80%;
   max-width: 600px;
   pointer-events: none;
 }
+
 .flash-msg {
   pointer-events: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);

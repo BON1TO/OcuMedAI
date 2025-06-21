@@ -31,7 +31,7 @@ module.exports.submitReport = async (req, res) => {
   // Call FastAPI
   let predictions;
   try {
-    const apiResponse = await axios.post("http://127.0.0.1:8000/predict", form, {
+    const apiResponse = await axios.post("https://ocumedai-fastapi.onrender.com/predict", form, {
       headers: form.getHeaders()
     });
     predictions = apiResponse.data;
@@ -49,11 +49,11 @@ module.exports.submitReport = async (req, res) => {
     BMI,
     smokingStatus,
     imageUrl,
-    diabeticRetinopathyLevel: predictions.DR_Level,         // NOTE: match key with FastAPI output
-    hypertensionRisk: predictions.HTN_Risk_Percentage,
-    hba1cLevel: predictions.HbA1c_Level,
-    atherosclerosisRisk: predictions.Atherosclerosis_Risk
-  });
+    diabeticRetinopathyLevel: predictions.diabeticRetinopathyLevel,
+    hypertensionRisk: predictions.hypertensionRisk,
+    hba1cLevel: predictions.hba1cLevel,
+    atherosclerosisRisk: predictions.atherosclerosisRisk
+    });
 
   await report.save();
   req.flash("success", "Report generated and saved successfully!");
