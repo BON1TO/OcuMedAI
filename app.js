@@ -83,6 +83,8 @@ async function main() {
 }
 main().catch(err => console.log("MongoDB connection error:", err));
 
-app.listen(8111, () => {
-    console.log("Server is listening on port 8111");
+const PORT = process.env.PORT || 8111;
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
+
