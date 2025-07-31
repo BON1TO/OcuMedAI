@@ -25,7 +25,7 @@ module.exports.submitReport = async (req, res) => {
   form.append("image", imageBuffer, { filename: "image.jpg" });
   form.append("age", age);
   form.append("sex", sex);
-  form.append("bmi", BMI);
+  form.append("BMI", BMI);
   form.append("smokingStatus", smokingStatus);
 
   // Call FastAPI
