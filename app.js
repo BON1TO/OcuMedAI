@@ -83,10 +83,6 @@ async function main() {
 }
 main().catch(err => console.log("MongoDB connection error:", err));
 
-app.get("/test", (req, res) => {
-  res.send("✅ Server is up and running!");
-});
-
 
 const PORT = process.env.PORT || 8111;
 app.listen(PORT, () => {
