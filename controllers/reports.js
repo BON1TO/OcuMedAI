@@ -8,6 +8,12 @@ module.exports.renderNewReportForm = (req, res) => {
 };
 
 module.exports.submitReport = async (req, res) => {
+  console.log("SUBMIT REPORT TRIGGERED");
+  console.log("req.user:", req.user);
+  console.log("req.file:", req.file);
+  console.log("body:", req.body);
+
+
   if (!req.file) {
     req.flash("error", "Image is required.");
     return res.redirect("/reports/new");
