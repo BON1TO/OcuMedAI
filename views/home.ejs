@@ -1,18 +1,83 @@
-<% layout("layouts/boilerplate") %>
+<% pageTitle = "Home"; %>
+<% layout('layouts/boilerplate') %>
 
-<div class="text-center my-5">
-  <h1 class="display-4 fw-bold text-primary">
-    Welcome <%= currentUser ? currentUser.name : "to OcuMedAI" %> 👁️‍🗨️
-  </h1>
-  <p class="lead text-secondary">A Deep Learning–powered Health Risk Analyzer</p>
 
-  <% if(currentUser) { %>
-    <a href="/reports/new" class="btn btn-primary btn-lg mt-4 px-4 py-2">
-      <i class="bi bi-plus-circle"></i> Create New Report
-    </a>
-  <% } else { %>
-    <a href="/login" class="btn btn-success mt-4 px-4 py-2">
-      <i class="bi bi-box-arrow-in-right"></i> Login to Get Started
-    </a>
-  <% } %>
+<div class="home-wrapper">
+
+  <!-- HERO SECTION -->
+  <section class="home-hero-card">
+    
+    <div class="hero-left">
+      <h1 class="hero-welcome">
+        Welcome,
+        <span class="gradient-strong">
+          <%= currentUser ? (currentUser.name || currentUser.username) : "Guest" %>
+        </span> 👋
+      </h1>
+
+      <p class="hero-sub">Your AI-powered health analytics & retinal diagnostics center.</p>
+
+      <div class="hero-actions">
+        <a href="/users/dashboard" class="btn-hero">Dashboard</a>
+        <a href="/reports" class="btn-hero ghost">View Reports</a>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE VISUAL -->
+    <div class="hero-visual">
+      <div class="holo-ring"></div>
+      <div class="holo-heart"></div>
+      <div class="holo-glow"></div>
+    </div>
+
+  </section>
+
+
+  <!-- HEALTH MATTERS SECTION -->
+  <section class="home-latest">
+
+    <h2 class="section-title">Your Health Matters ❤️</h2>
+
+    <div class="latest-empty">
+      <div class="fact-box" id="healthFactBox">
+        🌱 Stay active — even a 10-minute walk boosts heart health.
+      </div>
+    </div>
+
+    <script>
+  const facts = [
+    "🌱 Stay active — even a 10-minute walk boosts heart health.",
+    "🍎 Eating fruits & veggies daily lowers chronic disease risk.",
+    "💧 Hydration improves brain function and reduces fatigue.",
+    "😴 Quality sleep helps regulate blood sugar and blood pressure.",
+    "❤️ Regular health checkups detect issues early.",
+    "👁 Eye exams can reveal hypertension and diabetes early.",
+    "🚶‍♂️ Moving every hour improves circulation.",
+    "🧠 Stress management is key for a healthy mind and body."
+  ];
+
+  let idx = 0;
+  const box = document.getElementById("healthFactBox");
+
+  function rotateFact() {
+    // slide up + fade out
+    box.classList.remove("slide-in");
+    box.classList.add("slide-out");
+
+    setTimeout(() => {
+      idx = (idx + 1) % facts.length;
+      box.textContent = facts[idx];
+
+      // slide down + fade in
+      box.classList.remove("slide-out");
+      box.classList.add("slide-in");
+    }, 350); // matches animation speed
+  }
+
+  setInterval(rotateFact, 3500); // 3.5 seconds
+</script>
+
+
+  </section>
+
 </div>

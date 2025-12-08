@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NeuroSight | Auth</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+
+<body class="auth-body <%= typeof authPage !== 'undefined' ? authPage : '' %>">
+
+
+
+  <!-- FLOATING FACTS LAYER -->
+  <div id="facts-layer"></div>
+
+  <!-- LOGIN WRAPPER -->
+  <main class="auth-wrapper">
+    <%- body %>
+  </main>
+
+<script>
+/* ======================================================
+   NON-OVERLAPPING FLOATING FACTS ENGINE (Optimized)
+   ====================================================== */
+
+const FACTS = ["The retina is the only place in the body where blood vessels can be seen directly.", "Eye scans can detect diabetes years before symptoms appear.", "Your eyes process 36,000 pieces of information every hour.", "Over 80% of what we perceive comes through our eyes.", "The human eye can distinguish about 10 million colors.", "Retinal damage can indicate high blood pressure.", "AI can detect early heart disease from eye images.", "The optic nerve contains over 1 million nerve fibers.", "Eyes heal from minor scratches within 48 hours.", "The retina is technically brain tissue.", "Eye exams can reveal anemia.", "Pupil dilation helps detect neurological disorders.", "Diabetic retinopathy is one of the leading causes of blindness.", "Retina scans help detect kidney disease early.", "Smoking doubles the risk of age-related macular degeneration.", "Hypertension silently damages the retina.", "A healthy retina needs strong blood circulation.", "High HbA1c levels can alter retinal micro-vessels.", "The eye is only 2.5 cm but extraordinarily complex.", "Humans blink about 15–20 times per minute.", "Stress can reduce peripheral vision temporarily.", "Oxygen levels in the retina affect vision clarity.", "Blue light exposure affects sleep hormones.", "The retina consumes more oxygen than any other tissue.", "AI retinal analytics reduce diagnostic errors.", "The fovea is responsible for sharp central vision.", "Eyes are the fastest muscle group in the body.", "UV exposure accelerates retinal aging.", "Good hydration improves tear film quality.", "Red spots in retina images may indicate microaneurysms.", "Consistent eye pressure is essential for optic health.", "Optical Coherence Tomography (OCT) reveals hidden tissue layers.", "Every eye has a unique vascular pattern.", "High cholesterol can be visible in the retina.", "The human eye autofocuses thousands of times daily.", "Retinal scans can indicate stroke risk.", "Diabetes affects the eye before any other organ.", "Neurons in the retina fire millions of signals per second.", "Retinal signals travel to the brain at 300 km/h.", "Early DR detection prevents 95% of vision loss.", "AI detects hypertension from retinal arteries.", "The retina is 0.2 mm thick but contains 120 million rods.", "Carrots actually improve night vision — only if you are vitamin A deficient.", "Eyes use 65% of the brain's processing power.", "The blood-retinal barrier is similar to the blood-brain barrier.", "Vitrectomy removes clouded vitreous to restore vision.", "Low oxygen damages photoreceptors.", "AI models detect glaucoma with high accuracy.", "The retina regenerates slowly but consistently.", "High glucose thickens retinal vessels subtly.", "Eye exams reveal autoimmune disorders.", "Nearsightedness is increasing globally.", "Retinal swelling distorts central vision.", "The cornea has no blood vessels.", "Eyes can get sunburned (photokeratitis).", "Eye pressure fluctuates throughout the day.", "Retinal tears require immediate attention.", "Detecting DR early drastically reduces complications.", "Eyes reveal early Alzheimer's patterns.", "AI transforms retinal images into health predictions.", "The retina maps blood flow automatically.", "Each retina has ~7 million cones for color vision.", "Eye floaters increase with age.", "The retina converts light into electrical impulses.", "Vitamin A deficiency causes night blindness.", "The retina reveals systemic inflammation.", "Your eyes contain over 2 million working parts.", "Retinal micro-bleeds show cardiovascular strain.", "The eye sees in real-time microseconds.", "More than 100 systemic diseases appear in eye scans.", "The macula controls detailed reading vision.", "Oxidative stress damages retinal cells.", "AI enhances subtle retinal pattern detection.", "Blood vessel width changes with hypertension.", "The retina detects motion better than static details.", "Tears have antibacterial properties.", "Eyes maintain constant lubrication automatically.", "Cone cells detect high-resolution color.", "Rods detect motion and low light.", "Retinal thickness varies with disease.", "AI retinal exams reduce hospital load.", "Eyes are an early warning system for your body.", "Light enters the eye upside-down before brain correction.", "Eye exams help detect thyroid disorders.", "Retinal plaques reveal vascular disease.", "The retina uses 50% of brain's neural pathways.", "Eye color can change with certain illnesses.", "Retina scans contribute to biological age estimation.", "A healthy retina is essential for cognitive performance.", "Eyes instantly adjust to darkness and light.", "AI retinal scanners improve global health access.", "Heart disease alters retinal artery patterns.", "Every blink spreads nutrients across the eye surface."
+];
+
+const MAX_FACTS = 10;
+const FACT_TIME = 9000;
+const factsLayer = document.getElementById("facts-layer");
+
+function randomFact() {
+    return FACTS[Math.floor(Math.random() * FACTS.length)];
+}
+
+// List of active fact DOM nodes
+let activeFacts = [];
+
+// Check overlap between two rectangles
+function isOverlapping(r1, r2) {
+    return !(
+        r1.right < r2.left ||
+        r1.left > r2.right ||
+        r1.bottom < r2.top ||
+        r1.top > r2.bottom
+    );
+}
+
+// Spawn fact without overlapping others
+function spawnFact() {
+    if (activeFacts.length >= MAX_FACTS) return;
+
+    const div = document.createElement("div");
+    div.className = "floating-fact";
+    div.textContent = randomFact();
+    div.style.fontSize = (14 + Math.random() * 6) + "px";
+
+    // Try up to 20 times to find non-overlapping coordinates
+    let attempts = 20;
+    let placed = false;
+
+    while (attempts-- > 0 && !placed) {
+        let x = Math.random() * (window.innerWidth - 200);
+        let y = Math.random() * (window.innerHeight - 120);
+
+        div.style.left = x + "px";
+        div.style.top = y + "px";
+
+        factsLayer.appendChild(div);
+
+        const newRect = div.getBoundingClientRect();
+        let collision = activeFacts.some(f => {
+            const oldRect = f.getBoundingClientRect();
+            return isOverlapping(newRect, oldRect);
+        });
+
+        if (!collision) {
+            placed = true;
+            activeFacts.push(div);
+        } else {
+            div.remove(); // retry
+        }
+    }
+
+    if (!placed) return; // all attempts failed
+
+    // Remove + cleanup
+    setTimeout(() => {
+        div.remove();
+        activeFacts = activeFacts.filter(f => f !== div);
+    }, FACT_TIME + 200);
+}
+
+// Start spawning
+setInterval(spawnFact, 900);
+for (let i = 0; i < 8; i++) spawnFact();
+
+</script>
+
+
+<script>
+setInterval(() => {
+  const s = document.createElement("div");
+  s.className = "spark";
+
+  s.style.left = Math.random() * window.innerWidth + "px";
+  s.style.top = (window.innerHeight * 0.2 + Math.random() * window.innerHeight * 0.6) + "px";
+
+  document.body.appendChild(s);
+
+  setTimeout(()=> s.remove(), 6000);
+}, 650);
+</script>
+
+
+</body>
+</html>
+
+

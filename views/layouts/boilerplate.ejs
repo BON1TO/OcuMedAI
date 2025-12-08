@@ -1,44 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OcuMedAI</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title><%= typeof title !== 'undefined' ? title + ' | NeuroSight' : 'NeuroSight' %></title>
+
+  <!-- Modern clean font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
-<body class="d-flex flex-column min-vh-100">
-  <% const flashSuccess = typeof success !== 'undefined' ? success : null; %>
-    <% const flashError = typeof error !== 'undefined' ? error : null; %>
-    <%- include('../includes/navbar.ejs') %>
-    <div class="flash-container">
-        <% if (flashSuccess && flashSuccess.length) { %>
-            <div class="alert alert-success alert-dismissible fade show flash-msg" role="alert">
-                <%= flashSuccess %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <% } %>
-        <% if (flashError && flashError.length) { %>
-            <div class="alert alert-danger alert-dismissible fade show flash-msg" role="alert">
-                <%= flashError %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        <% } %>
+
+<body class="theme-root theme-dark" style="font-family: 'Inter', sans-serif;">
+
+  <!-- FIXED LEFT SIDEBAR -->
+  <aside id="sidebar" class="sidebar" aria-label="Main navigation">
+    
+    <div class="sidebar-top">
+      <a class="brand" href="/home" title="NeuroSight">
+        <div class="logo-area">
+  <img src="/images/icon.png" class="logo-img" alt="NeuroSight Logo">
+</div>
+
+
+
+        <div class="brand-text">NEURO SIGHT</div>
+      </a>
     </div>
 
-    <script>
-        setTimeout(() => {
-            const flash = document.querySelector('.flash-msg');
-            if (flash) flash.classList.remove('show');
-        }, 4000);
-    </script>
+    <nav class="nav" role="navigation">
 
-  <main class="container my-4 flex-grow-1">
-    <%- body %>
-  </main>
+  <a class="nav-item <%= currentPath === '/users/dashboard' ? 'active' : '' %>" 
+     href="/users/dashboard">
+    <span class="label">Dashboard</span>
+  </a>
 
-  <%- include('../includes/footer') %>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <a class="nav-item <%= currentPath.startsWith('/reports') ? 'active' : '' %>" 
+     href="/reports">
+    <span class="label">Reports</span>
+  </a>
+
+  <a class="nav-item <%= currentPath.startsWith('/calendar') ? 'active' : '' %>" 
+     href="/calendar">
+    <span class="label">Calendar</span>
+  </a>
+
+  <a class="nav-item <%= currentPath.startsWith('/checkup') ? 'active' : '' %>" 
+     href="/checkup">
+    <span class="label">Checkup</span>
+  </a>
+
+  <a class="nav-item <%= currentPath.startsWith('/settings') ? 'active' : '' %>" 
+     href="/settings">
+    <span class="label">Settings</span>
+  </a>
+
+</nav>
+
+
+    <div class="sidebar-bottom">
+      <a href="/logout" class="logout-btn">Logout</a>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN PAGE -->
+  <div class="page <%= pageClass || '' %>">
+
+
+    <!-- TOPBAR -->
+<header class="topbar">
+
+  <% if (!currentUser) { %>
+    <!-- Guest view: Login / Register -->
+    <div></div> <!-- empty left space -->
+
+    <div class="top-right">
+      <a href="/login" class="toplink">Login</a>
+      <a href="/register" class="toplink">Register</a>
+    </div>
+
+  <% } else { %>
+    <!-- Logged-in view: Normal dashboard topbar -->
+    <% pageTitle = (typeof pageTitle !== "undefined") ? pageTitle : ""; %>
+
+<h1 class="page-title">
+  <%= pageTitle %>
+</h1>
+
+
+
+    <div class="top-right">
+      
+
+      <div class="profile">
+        <div class="avatar">
+          <%= currentUser.username[0].toUpperCase() %>
+        </div>
+      </div>
+    </div>
+  <% } %>
+
+</header>
+
+
+    <!-- MAIN CONTENT -->
+    <main id="main" class="main-content">
+      <%- body %>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      © <%= new Date().getFullYear() %> NeuroSight
+    </footer>
+
+  </div>
+
+
+  <!-- JS FILES -->
+  <script src="/js/theme.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <!-- Global particle layer -->
+<div id="particle-layer"></div>
+<script src="/js/particles.js"></script>
+
+
 </body>
 </html>
