@@ -1425,6 +1425,62 @@ a{color:inherit}
 
 
 
+/* Fix select dropdown blue background */
+.report-form select,
+select.form-select {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Dropdown list styling */
+.report-form select option {
+  background: #11151a !important;
+  color: white !important;
+  padding: 10px;
+}
+
+
+/* Remove number input arrows (Chrome, Edge, Safari) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows (Firefox) */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* overflow fixed */
+
+/* Remove weird bottom transparent layer */
+.page {
+    background: transparent !important;
+    min-height: 100vh !important;
+    height: auto !important;
+    padding-bottom: 40px;
+    overflow: visible !important;
+}
+
+/* Fix particle layer causing fade at bottom */
+#particle-layer,
+#particle-layer::after {
+    background: none !important;
+    display: block !important;
+}
+
+/* Remove sidebar bottom glow */
+.sidebar {
+    box-shadow: 0 0 30px rgba(0,0,0,0.45) !important;
+}
 
 
 
