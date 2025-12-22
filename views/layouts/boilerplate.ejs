@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title><%= typeof title !== 'undefined' ? title + ' | NeuroSight' : 'NeuroSight' %></title>
+  <title><%= typeof title !== 'undefined' ? title + ' | OcuMedAI' : 'OcuMedAI' %></title>
 
   <!-- Modern clean font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,20 +12,20 @@
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 
-<body class="theme-root theme-dark" style="font-family: 'Inter', sans-serif;">
+<body class="theme-root theme-light" style="font-family: 'Inter', sans-serif;">
 
   <!-- FIXED LEFT SIDEBAR -->
   <aside id="sidebar" class="sidebar" aria-label="Main navigation">
     
     <div class="sidebar-top">
-      <a class="brand" href="/home" title="NeuroSight">
+      <a class="brand" href="/home" title="OcuMedAI">
         <div class="logo-area">
   <img src="/images/icon.png" class="logo-img" alt="NeuroSight Logo">
 </div>
 
 
 
-        <div class="brand-text">NEURO SIGHT</div>
+        <div class="brand-text">OcuMedAI</div>
       </a>
     </div>
 
@@ -41,10 +41,7 @@
     <span class="label">Reports</span>
   </a>
 
-  <a class="nav-item <%= currentPath.startsWith('/calendar') ? 'active' : '' %>" 
-     href="/calendar">
-    <span class="label">Calendar</span>
-  </a>
+
 
   <a class="nav-item <%= currentPath.startsWith('/checkup') ? 'active' : '' %>" 
      href="/checkup">
@@ -94,14 +91,21 @@
 
 
     <div class="top-right">
-      
 
-      <div class="profile">
-        <div class="avatar">
-          <%= currentUser.username[0].toUpperCase() %>
-        </div>
-      </div>
+  <!-- THEME TOGGLE -->
+  <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">
+    <span id="themeIcon">🌙</span>
+  </button>
+
+  <!-- USER AVATAR -->
+  <div class="profile">
+    <div class="avatar">
+      <%= currentUser.username[0].toUpperCase() %>
     </div>
+  </div>
+
+</div>
+
   <% } %>
 
 </header>
@@ -114,7 +118,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      © <%= new Date().getFullYear() %> NeuroSight
+      © <%= new Date().getFullYear() %> OcuMedAI
     </footer>
 
   </div>

@@ -45,17 +45,50 @@
         </select>
       </div>
 
-      <!-- FUNDUS IMAGE -->
-<div class="field">
-  <label for="image">Fundus Image</label>
+           <!-- FUNDUS IMAGE -->
+      <div class="field">
+        <label for="image">Fundus Image</label>
 
-  <div class="upload-box" id="uploadBox">
-    <span class="upload-icon">👁️‍🗨️</span>
-    <p class="upload-text">Click to upload fundus image</p>
-    <p class="upload-file-name" id="fileName">No file chosen</p>
+        <div class="upload-box" id="uploadBox">
+          <span class="upload-icon">👁️‍🗨️</span>
+          <p class="upload-text">Click to upload fundus image</p>
+          <p class="upload-file-name" id="fileName">No file chosen</p>
+        </div>
+
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/*"
+          required
+          hidden
+        />
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <button type="submit" class="btn-submit">
+        Generate Report
+      </button>
+
+    </form>
+
   </div>
-
-  <input type="file" id="image" name="image" accept="image/*" required hidden />
 </div>
 
-</div>
+<script>
+  const uploadBox = document.getElementById("uploadBox");
+  const imageInput = document.getElementById("image");
+  const fileNameText = document.getElementById("fileName");
+
+  uploadBox.addEventListener("click", () => {
+    imageInput.click();
+  });
+
+  imageInput.addEventListener("change", () => {
+    fileNameText.textContent =
+      imageInput.files.length > 0
+        ? imageInput.files[0].name
+        : "No file chosen";
+  });
+</script>
+

@@ -1,0 +1,53 @@
+<% layout("layouts/boilerplate") %>
+<% pageTitle = "Settings" %>
+
+<div class="settings-page">
+
+  <!-- ACCOUNT -->
+  <div class="settings-card">
+    <h2>Account</h2>
+
+    <div class="settings-row">
+      <span>Username</span>
+      <strong><%= currentUser.username %></strong>
+    </div>
+
+    <div class="settings-row">
+      <span>Email</span>
+      <strong><%= currentUser.email %></strong>
+    </div>
+  </div>
+
+
+  <!-- REPORT MANAGEMENT -->
+  <div class="settings-card danger">
+    <h2>Report Management</h2>
+
+    <p class="danger-text">
+      Deleting reports is permanent and cannot be undone.
+    </p>
+
+    <button class="danger-btn">
+      Delete All Reports
+    </button>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="settings-card">
+    <h2>Support & Contact</h2>
+
+    <p>Email: <strong>support@neurosight.ai</strong></p>
+    <p>Report issues or feedback anytime.</p>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="settings-card muted">
+    <h2>About</h2>
+
+    <p><strong>NeuroSight</strong> v1.0</p>
+    <p class="small">
+      AI-assisted analysis. Not a substitute for professional medical diagnosis.
+    </p>
+  </div>
+
+</div>

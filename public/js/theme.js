@@ -1,20 +1,43 @@
-(function(){
+(function () {
   const body = document.body;
   const KEY = 'neuro_theme';
   const btn = document.getElementById('themeBtn');
   const icon = document.getElementById('themeIcon');
 
-  function apply(t){
-    if(t === 'dark'){ body.classList.add('theme-dark'); body.classList.remove('theme-light'); if(icon) icon.textContent = '🌙'; }
-    else { body.classList.add('theme-light'); body.classList.remove('theme-dark'); if(icon) icon.textContent = '☀️'; }
+  function apply(t) {
+    if (t === 'dark') {
+      body.classList.add('theme-dark');
+      body.classList.remove('theme-light');
+      if (icon) icon.textContent = '🌙';
+    } else {
+      body.classList.add('theme-light');
+      body.classList.remove('theme-dark');
+      if (icon) icon.textContent = '☀️';
+    }
   }
 
+  // Load saved theme
   const saved = localStorage.getItem(KEY);
-  if(saved) apply(saved);
+  if (saved) apply(saved);
   else apply('dark');
 
-  if(btn) btn.addEventListener('click', ()=>{
-    const next = body.classList.contains('theme-dark') ? 'light' : 'dark';
-    apply(next); localStorage.setItem(KEY, next);
-  });
+  // Toggle theme
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const next = body.classList.contains('theme-dark') ? 'light' : 'dark';
+      apply(next);
+      localStorage.setItem(KEY, next);
+    });
+  }
 })();
+
+/* =====================================================
+   DELETE CONFIRMATION (USED BY REPORT DELETE BUTTON)
+   ===================================================== */
+
+function confirmDelete() {
+  return confirm(
+    "Are you sure you want to delete this report?\n\n" +
+    "Deleted reports cannot be recovered."
+  );
+}

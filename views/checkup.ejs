@@ -1,0 +1,47 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="checkup-page">
+  <h1>Health Checkup</h1>
+
+  <% if (!report) { %>
+    <p class="muted">No reports found. Generate a report first.</p>
+  <% } else { %>
+
+  <!-- SNAPSHOT -->
+  <div class="checkup-grid">
+
+    <div class="checkup-card">
+      <h3>DR Status</h3>
+      <p><%= report.diabeticRetinopathyLevel %></p>
+    </div>
+
+    <div class="checkup-card">
+      <h3>HbA1c</h3>
+      <p><%= report.hba1cLevel %></p>
+    </div>
+
+    <div class="checkup-card">
+      <h3>Hypertension Risk</h3>
+      <p><%= report.hypertensionRisk %>%</p>
+    </div>
+
+    <div class="checkup-card">
+      <h3>Atherosclerosis</h3>
+      <p><%= report.atherosclerosisRisk %>%</p>
+    </div>
+
+  </div>
+
+  <!-- INSIGHT -->
+  <div class="checkup-insight">
+    <h3>Insight</h3>
+
+    <% if (report.hba1cLevel > 5.7) { %>
+      <p>⚠️ HbA1c is slightly elevated. Monitor diet and exercise.</p>
+    <% } else { %>
+      <p>✅ HbA1c level is within healthy range.</p>
+    <% } %>
+  </div>
+
+  <% } %>
+</div>

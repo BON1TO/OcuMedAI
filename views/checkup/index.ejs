@@ -1,0 +1,77 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="checkup-page">
+  <div class="checkup-container">
+
+    <h1 class="checkup-title">Health Checkup</h1>
+
+    <!-- SUMMARY -->
+    <div class="checkup-grid">
+
+      <div class="checkup-card good">
+        <h3>DR Status</h3>
+        <p class="checkup-value">No DR</p>
+        <span class="checkup-hint">Healthy retina</span>
+      </div>
+
+      <div class="checkup-card good">
+        <h3>HbA1c</h3>
+        <p class="checkup-value">5.39</p>
+        <span class="checkup-hint">Normal</span>
+      </div>
+
+      <div class="checkup-card good">
+        <h3>Hypertension Risk</h3>
+        <p class="checkup-value">1.58%</p>
+        <span class="checkup-hint">Low</span>
+      </div>
+
+      <div class="checkup-card warning">
+        <h3>Atherosclerosis</h3>
+        <p class="checkup-value">22.19%</p>
+        <span class="checkup-hint">Needs monitoring</span>
+      </div>
+
+    </div>
+
+    <!-- COMPARISON -->
+    <h2 class="section-title">Comparison</h2>
+
+    <div class="compare-box">
+      <div class="compare-row">
+        <span>HbA1c</span>
+        <div class="compare-bar">
+          <div class="bar you" style="width:55%">You</div>
+          <div class="bar avg" style="width:65%">Avg</div>
+          <div class="bar ideal" style="width:50%">Ideal</div>
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <span>Hypertension</span>
+        <div class="compare-bar">
+          <div class="bar you" style="width:20%">You</div>
+          <div class="bar avg" style="width:45%">Avg</div>
+          <div class="bar ideal" style="width:25%">Ideal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLASSIFICATION -->
+    <h2 class="section-title">Overall Health</h2>
+
+    <div class="health-class good">
+      ✅ Status: <strong>GOOD</strong>
+    </div>
+
+    <!-- TREND -->
+    <h2 class="section-title">Trends</h2>
+
+    <div class="trend-box">
+      <p>HbA1c: <span class="trend-up">↑ Improving</span></p>
+      <p>Blood Pressure: <span class="trend-flat">→ Stable</span></p>
+      <p>Atherosclerosis: <span class="trend-down">↓ Watch closely</span></p>
+    </div>
+
+  </div>
+</div>

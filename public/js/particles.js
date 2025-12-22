@@ -2,7 +2,7 @@
    GLOBAL PARTICLE ENGINE — Slow Neon Sparks
    ====================================================== */
 
-const PARTICLE_COUNT = 26;       // total sparks on screen
+const PARTICLE_COUNT =  40;       // total sparks on screen
 const particleLayer = document.getElementById("particle-layer");
 
 function createParticle() {
