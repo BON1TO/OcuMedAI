@@ -226,23 +226,53 @@ function hrPercent(hr) {
 
 
     <!-- LATEST REPORT SNAPSHOT -->
-    <div class="card">
-      <div class="card-head">Latest Report Summary</div>
+   <div class="card latest-report-risk">
 
-      <% if (_latest) { %>
-        <div class="report-card">
-          <img src="<%= _latest.imageUrl %>" class="report-thumb">
-          <div class="report-info">
-            <div><strong>DR Level:</strong> <%= _latest.diabeticRetinopathyLevel %></div>
-            <div><strong>HbA1c:</strong> <%= _latest.hba1cLevel %></div>
-            <div><strong>Hypertension:</strong> <%= _latest.hypertensionRisk %>%</div>
-            <div><strong>Created:</strong> <%= new Date(_latest.createdAt).toLocaleString() %></div>
-          </div>
+  <div class="lrr-header">
+    <span>Latest Retina Assessment</span>
+  </div>
+
+  <% if (_latest) { %>
+
+    <%
+      let drText = "No DR Risk";
+      let drClass = "safe";
+
+      if (_latest.diabeticRetinopathyLevel === "Mild DR") {
+        drText = "DR Risk Detected";
+        drClass = "warn";
+      }
+      if (_latest.diabeticRetinopathyLevel === "Severe DR") {
+        drText = "High DR Risk";
+        drClass = "danger";
+      }
+    %>
+
+    <div class="lrr-body <%= drClass %>">
+
+      <div class="lrr-image">
+        <img src="<%= _latest.imageUrl %>" alt="Retina Scan">
+      </div>
+
+      <div class="lrr-info">
+        <div class="lrr-status"><%= drText %></div>
+        <div class="lrr-sub">
+          Based on latest retinal scan
         </div>
-      <% } else { %>
-        <p class="muted">No reports yet.</p>
-      <% } %>
+        <div class="lrr-time">
+          <%= new Date(_latest.createdAt).toLocaleString() %>
+        </div>
+      </div>
+
     </div>
+
+  <% } else { %>
+    <p class="muted">No reports yet.</p>
+  <% } %>
+
+</div>
+
+
 
   </aside>
 

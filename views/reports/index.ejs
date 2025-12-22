@@ -1,17 +1,56 @@
 <% pageTitle = "Reports" %>
 <% layout('layouts/boilerplate') %>
 
-<h1 class="gradient-title">Your Reports</h1>
+<section class="reports-page">
 
-<div class="reports-grid">
-  <% reports.forEach(r => { %>
-    <div class="report-card">
-      <img src="<%= r.imageUrl %>" class="report-thumb">
-      <div class="report-info">
-        <h3><%= r.diabeticRetinopathyLevel %></h3>
-        <p>Age <%= r.age %> • BMI <%= r.BMI %></p>
-        <a href="/reports/<%= r._id %>" class="report-btn">View Report</a>
-      </div>
+  <h1 class="gradient-title">Your Reports</h1>
+
+  <% if (reports.length === 0) { %>
+    <div class="empty-reports">
+      <p>No reports yet.</p>
+      <a href="/reports/new" class="btn-hero neon">Create your first report</a>
     </div>
-  <% }) %>
-</div>
+  <% } %>
+
+  <div class="reports-grid modern">
+    <% reports.forEach(r => { %>
+
+      <% 
+        let drClass = "ok";
+        let drText = "No DR";
+
+        if (r.diabeticRetinopathyLevel?.toLowerCase().includes("high")) {
+          drClass = "danger";
+          drText = "High DR Risk";
+        } else if (r.diabeticRetinopathyLevel?.toLowerCase().includes("dr")) {
+          drClass = "warn";
+          drText = "DR Risk";
+        }
+      %>
+
+      <a href="/reports/<%= r._id %>" class="report-glass-card">
+
+        <!-- Retina Preview -->
+        <div class="retina-preview">
+          <img src="<%= r.imageUrl %>" alt="Retinal Scan">
+        </div>
+
+        <!-- Content -->
+        <div class="report-glass-body">
+          <span class="dr-badge <%= drClass %>">
+            <%= drText %>
+          </span>
+
+          <div class="report-meta">
+            <span>
+              Created · <%= new Date(r.createdAt).toLocaleDateString() %>
+            </span>
+          </div>
+        </div>
+
+      </a>
+
+    <% }) %>
+  </div>
+
+</section>

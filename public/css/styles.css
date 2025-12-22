@@ -2112,8 +2112,6 @@ body.theme-light .theme-toggle:hover {
 .trend-down { color: #ff7a7a; font-weight: 700; }
 
 
-/* STABLE CSS VERSION */
-
 
 
 /* ===============================
@@ -2220,3 +2218,293 @@ body.theme-light .nr-icon {
 }
 
 
+
+/*STABLE VERSION  */
+
+
+
+/* ===============================
+   LATEST REPORT — PREMIUM CARD
+================================ */
+
+.latest-report-pro {
+  padding: 18px;
+}
+
+.lrp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.lrp-header span {
+  font-size: 15px;
+}
+
+.lrp-view {
+  font-size: 13px;
+  color: var(--accent3);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.lrp-body {
+  display: flex;
+  gap: 16px;
+}
+
+/* Retina image */
+.lrp-image {
+  width: 86px;
+  height: 86px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+}
+
+.lrp-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info section */
+.lrp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lrp-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.lrp-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.lrp-value {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* Metrics grid */
+.lrp-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+}
+
+.lrp-grid span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.lrp-grid strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Timestamp */
+.lrp-time {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+
+/* ===============================
+   LATEST REPORT — MEDICAL VERDICT
+================================ */
+
+.latest-report-risk {
+  padding: 18px;
+}
+
+.lrr-header {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.lrr-body {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  align-items: center;
+}
+
+/* Retina image */
+.lrr-image {
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.lrr-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info */
+.lrr-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lrr-status {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.lrr-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lrr-time {
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+/* -------------------------------
+   Risk States
+-------------------------------- */
+
+.lrr-body.safe {
+  background: linear-gradient(135deg, rgba(77,240,184,0.20), rgba(0,198,163,0.12));
+}
+
+.lrr-body.safe .lrr-status {
+  color: #00b894;
+}
+
+.lrr-body.warn {
+  background: linear-gradient(135deg, rgba(255,224,102,0.25), rgba(255,143,63,0.15));
+}
+
+.lrr-body.warn .lrr-status {
+  color: #ff9f1a;
+}
+
+.lrr-body.danger {
+  background: linear-gradient(135deg, rgba(255,79,79,0.28), rgba(180,0,0,0.18));
+}
+
+.lrr-body.danger .lrr-status {
+  color: #ff4f4f;
+}
+
+
+/* ==========================
+   REPORTS PAGE — MODERN GLASS
+========================== */
+
+.reports-page {
+  padding: 40px;
+}
+
+.reports-grid.modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
+  margin-top: 30px;
+}
+
+/* Card */
+.report-glass-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--text);
+
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+  transition: all 0.3s ease;
+}
+
+.report-glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+}
+
+/* Retina image */
+.retina-preview {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.retina-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Body */
+.report-glass-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* DR Badge */
+.dr-badge {
+  width: fit-content;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* Badge variants */
+.dr-badge.ok {
+  background: linear-gradient(90deg,#4df0b8,#00c6a3);
+  color: #022;
+}
+
+.dr-badge.warn {
+  background: linear-gradient(90deg,#ffd46b,#ffb703);
+  color: #222;
+}
+
+.dr-badge.danger {
+  background: linear-gradient(90deg,#ff4f4f,#ff7a7a);
+  color: white;
+}
+
+/* Meta */
+.report-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Empty state */
+.empty-reports {
+  margin-top: 40px;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+}
