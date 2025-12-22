@@ -6,11 +6,27 @@
 
   <title><%= typeof title !== 'undefined' ? title + ' | OcuMedAI' : 'OcuMedAI' %></title>
 
-  <!-- Modern clean font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- ✅ CRITICAL: Theme loader BEFORE CSS -->
+  <script>
+    (function () {
+      const KEY = "neuro_theme";
+      let theme = localStorage.getItem(KEY);
+
+      if (theme !== "light" && theme !== "dark") {
+        theme = "light";
+        localStorage.setItem(KEY, "light");
+      }
+
+      document.documentElement.classList.add("theme-" + theme);
+    })();
+  </script>
 
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
+
 
 <body class="theme-root" style="font-family: 'Inter', sans-serif;">
 
