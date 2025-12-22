@@ -72,9 +72,10 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user || null;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.currentPath = req.path || "";
+  res.locals.currentPath = req.originalUrl || "";
   next();
 });
+
 
 // ---------------------------------------------- REQUEST LOGGER
 app.use((req, res, next) => {
