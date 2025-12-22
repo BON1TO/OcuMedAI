@@ -225,52 +225,37 @@ function hrPercent(hr) {
 </div>
 
 
-    <!-- LATEST REPORT SNAPSHOT -->
-   <div class="card latest-report-risk">
-
-  <div class="lrr-header">
-    <span>Latest Retina Assessment</span>
+    <!-- LATEST REPORT (CTA STYLE) -->
+<div class="card">
+  <div class="card-head">
+    Latest Report
+    <a href="/reports" class="view-all">View all</a>
   </div>
 
   <% if (_latest) { %>
+    <a href="/reports/<%= _latest._id %>" class="latest-report-cta">
 
-    <%
-      let drText = "No DR Risk";
-      let drClass = "safe";
-
-      if (_latest.diabeticRetinopathyLevel === "Mild DR") {
-        drText = "DR Risk Detected";
-        drClass = "warn";
-      }
-      if (_latest.diabeticRetinopathyLevel === "Severe DR") {
-        drText = "High DR Risk";
-        drClass = "danger";
-      }
-    %>
-
-    <div class="lrr-body <%= drClass %>">
-
-      <div class="lrr-image">
-        <img src="<%= _latest.imageUrl %>" alt="Retina Scan">
-      </div>
-
-      <div class="lrr-info">
-        <div class="lrr-status"><%= drText %></div>
-        <div class="lrr-sub">
-          Based on latest retinal scan
+      <div class="lrc-left">
+        <div class="lrc-icon">
+          <img src="/images/temp.png" alt="Eye icon">
         </div>
-        <div class="lrr-time">
-          <%= new Date(_latest.createdAt).toLocaleString() %>
+
+        <div class="lrc-text">
+          <h3><%= _latest.diabeticRetinopathyLevel %></h3>
+          <p><%= new Date(_latest.createdAt).toLocaleDateString() %></p>
         </div>
       </div>
 
-    </div>
+      <div class="lrc-arrow">→</div>
 
+    </a>
   <% } else { %>
     <p class="muted">No reports yet.</p>
   <% } %>
-
 </div>
+
+
+
 
 
 
