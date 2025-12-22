@@ -20,16 +20,17 @@
         localStorage.setItem(KEY, "light");
       }
 
-      document.documentElement.classList.add("theme-" + theme);
+      /* 🔧 FIX: apply to BODY, not HTML */
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.add("theme-" + theme);
+      });
     })();
   </script>
 
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
 
-
 <body class="theme-root" style="font-family: 'Inter', sans-serif;">
-
 
   <!-- FIXED LEFT SIDEBAR -->
   <aside id="sidebar" class="sidebar" aria-label="Main navigation">
@@ -79,11 +80,9 @@
     <header class="topbar">
 
       <% if (!currentUser) { %>
-        <!-- GUEST VIEW -->
         <div></div>
 
         <div class="top-right">
-          <!-- THEME TOGGLE (VISIBLE TO GUESTS) -->
           <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">
             <span id="themeIcon">☀️</span>
           </button>
@@ -93,13 +92,10 @@
         </div>
 
       <% } else { %>
-        <!-- LOGGED-IN VIEW -->
-        <% pageTitle = (typeof pageTitle !== "undefined") ? pageTitle : ""; %>
 
-        <h1 class="page-title"><%= pageTitle %></h1>
+        <h1 class="page-title"><%= pageTitle || "" %></h1>
 
         <div class="top-right">
-          <!-- THEME TOGGLE (BESIDE AVATAR) -->
           <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">
             <span id="themeIcon">☀️</span>
           </button>
@@ -115,12 +111,10 @@
 
     </header>
 
-    <!-- MAIN CONTENT -->
     <main id="main" class="main-content">
       <%- body %>
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
       © <%= new Date().getFullYear() %> OcuMedAI
     </footer>
@@ -131,7 +125,6 @@
   <script src="/js/theme.js"></script>
   <script src="/js/dashboard.js"></script>
 
-  <!-- Global particle layer -->
   <div id="particle-layer"></div>
   <script src="/js/particles.js"></script>
 

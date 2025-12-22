@@ -1,24 +1,28 @@
 (function () {
-  const root = document.documentElement;
+  const body = document.body;
   const KEY = "neuro_theme";
   const btn = document.getElementById("themeBtn");
   const icon = document.getElementById("themeIcon");
 
   function apply(theme) {
-    root.classList.remove("theme-light", "theme-dark");
-    root.classList.add("theme-" + theme);
+    body.classList.remove("theme-light", "theme-dark");
+    body.classList.add(`theme-${theme}`);
     if (icon) icon.textContent = theme === "dark" ? "🌙" : "☀️";
   }
 
-  // Load saved theme (default already set in <head>)
-  const saved = localStorage.getItem(KEY) || "light";
-  apply(saved);
+  // Read saved theme ONLY (no forcing here)
+  const saved = localStorage.getItem(KEY);
+  if (saved === "dark" || saved === "light") {
+    apply(saved);
+  }
 
+  // Toggle theme
   if (btn) {
     btn.addEventListener("click", () => {
-      const next = root.classList.contains("theme-dark")
+      const next = body.classList.contains("theme-dark")
         ? "light"
         : "dark";
+
       localStorage.setItem(KEY, next);
       apply(next);
     });
