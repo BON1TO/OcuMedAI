@@ -1,32 +1,33 @@
 (function () {
   const body = document.body;
-  const KEY = 'neuro_theme';
-  const btn = document.getElementById('themeBtn');
-  const icon = document.getElementById('themeIcon');
+  const KEY = "neuro_theme";
+  const btn = document.getElementById("themeBtn");
+  const icon = document.getElementById("themeIcon");
 
-  function apply(t) {
-    if (t === 'dark') {
-      body.classList.add('theme-dark');
-      body.classList.remove('theme-light');
-      if (icon) icon.textContent = '🌙';
-    } else {
-      body.classList.add('theme-light');
-      body.classList.remove('theme-dark');
-      if (icon) icon.textContent = '☀️';
-    }
+  function apply(theme) {
+    body.classList.remove("theme-light", "theme-dark");
+    body.classList.add(`theme-${theme}`);
+    if (icon) icon.textContent = theme === "dark" ? "🌙" : "☀️";
   }
 
-  // Load saved theme
-  const saved = localStorage.getItem(KEY);
-  if (saved) apply(saved);
-  else apply('light');
+  // ✅ FORCE LIGHT AS TRUE DEFAULT (even for old users)
+  let saved = localStorage.getItem(KEY);
+
+  if (saved !== "light" && saved !== "dark") {
+    saved = "light";
+    localStorage.setItem(KEY, "light");
+  }
+
+  apply(saved);
 
   // Toggle theme
   if (btn) {
-    btn.addEventListener('click', () => {
-      const next = body.classList.contains('theme-dark') ? 'light' : 'dark';
-      apply(next);
+    btn.addEventListener("click", () => {
+      const next = body.classList.contains("theme-dark")
+        ? "light"
+        : "dark";
       localStorage.setItem(KEY, next);
+      apply(next);
     });
   }
 })();
