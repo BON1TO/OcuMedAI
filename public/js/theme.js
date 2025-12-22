@@ -19,7 +19,7 @@
   // Load saved theme
   const saved = localStorage.getItem(KEY);
   if (saved) apply(saved);
-  else apply('dark');
+  else apply('light');
 
   // Toggle theme
   if (btn) {

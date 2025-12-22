@@ -20,96 +20,83 @@
     <div class="sidebar-top">
       <a class="brand" href="/home" title="OcuMedAI">
         <div class="logo-area">
-  <img src="/images/icon.png" class="logo-img" alt="NeuroSight Logo">
-</div>
-
-
-
+          <img src="/images/icon.png" class="logo-img" alt="OcuMedAI Logo">
+        </div>
         <div class="brand-text">OcuMedAI</div>
       </a>
     </div>
 
     <nav class="nav" role="navigation">
 
-  <a class="nav-item <%= currentPath === '/users/dashboard' ? 'active' : '' %>" 
-     href="/users/dashboard">
-    <span class="label">Dashboard</span>
-  </a>
+      <a class="nav-item <%= currentPath === '/users/dashboard' ? 'active' : '' %>" 
+         href="/users/dashboard">
+        <span class="label">Dashboard</span>
+      </a>
 
-  <a class="nav-item <%= currentPath.startsWith('/reports') ? 'active' : '' %>" 
-     href="/reports">
-    <span class="label">Reports</span>
-  </a>
+      <a class="nav-item <%= currentPath.startsWith('/reports') ? 'active' : '' %>" 
+         href="/reports">
+        <span class="label">Reports</span>
+      </a>
 
+      <a class="nav-item <%= currentPath.startsWith('/checkup') ? 'active' : '' %>" 
+         href="/checkup">
+        <span class="label">Checkup</span>
+      </a>
 
+      <a class="nav-item <%= currentPath.startsWith('/settings') ? 'active' : '' %>" 
+         href="/settings">
+        <span class="label">Settings</span>
+      </a>
 
-  <a class="nav-item <%= currentPath.startsWith('/checkup') ? 'active' : '' %>" 
-     href="/checkup">
-    <span class="label">Checkup</span>
-  </a>
-
-  <a class="nav-item <%= currentPath.startsWith('/settings') ? 'active' : '' %>" 
-     href="/settings">
-    <span class="label">Settings</span>
-  </a>
-
-</nav>
-
+    </nav>
 
     <div class="sidebar-bottom">
       <a href="/logout" class="logout-btn">Logout</a>
     </div>
-
   </aside>
-
 
   <!-- MAIN PAGE -->
   <div class="page">
 
-
-
     <!-- TOPBAR -->
-<header class="topbar">
+    <header class="topbar">
 
-  <% if (!currentUser) { %>
-    <!-- Guest view: Login / Register -->
-    <div></div> <!-- empty left space -->
+      <% if (!currentUser) { %>
+        <!-- GUEST VIEW -->
+        <div></div>
 
-    <div class="top-right">
-      <a href="/login" class="toplink">Login</a>
-      <a href="/register" class="toplink">Register</a>
-    </div>
+        <div class="top-right">
+          <!-- THEME TOGGLE (VISIBLE TO GUESTS) -->
+          <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">
+            <span id="themeIcon">☀️</span>
+          </button>
 
-  <% } else { %>
-    <!-- Logged-in view: Normal dashboard topbar -->
-    <% pageTitle = (typeof pageTitle !== "undefined") ? pageTitle : ""; %>
+          <a href="/login" class="toplink">Login</a>
+          <a href="/register" class="toplink">Register</a>
+        </div>
 
-<h1 class="page-title">
-  <%= pageTitle %>
-</h1>
+      <% } else { %>
+        <!-- LOGGED-IN VIEW -->
+        <% pageTitle = (typeof pageTitle !== "undefined") ? pageTitle : ""; %>
 
+        <h1 class="page-title"><%= pageTitle %></h1>
 
+        <div class="top-right">
+          <!-- THEME TOGGLE (BESIDE AVATAR) -->
+          <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">
+            <span id="themeIcon">☀️</span>
+          </button>
 
-    <div class="top-right">
+          <div class="profile">
+            <div class="avatar">
+              <%= currentUser.username[0].toUpperCase() %>
+            </div>
+          </div>
+        </div>
 
-  <!-- THEME TOGGLE -->
-  <button id="themeBtn" class="theme-toggle" aria-label="Toggle theme">
-    <span id="themeIcon">🌙</span>
-  </button>
+      <% } %>
 
-  <!-- USER AVATAR -->
-  <div class="profile">
-    <div class="avatar">
-      <%= currentUser.username[0].toUpperCase() %>
-    </div>
-  </div>
-
-</div>
-
-  <% } %>
-
-</header>
-
+    </header>
 
     <!-- MAIN CONTENT -->
     <main id="main" class="main-content">
@@ -123,14 +110,13 @@
 
   </div>
 
-
   <!-- JS FILES -->
   <script src="/js/theme.js"></script>
   <script src="/js/dashboard.js"></script>
-  <!-- Global particle layer -->
-<div id="particle-layer"></div>
-<script src="/js/particles.js"></script>
 
+  <!-- Global particle layer -->
+  <div id="particle-layer"></div>
+  <script src="/js/particles.js"></script>
 
 </body>
 </html>
